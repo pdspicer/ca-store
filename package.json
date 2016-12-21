@@ -1,0 +1,19 @@
+{
+  "name": "ca-store",
+  "version": "0.0.0",
+  "description": "The module you need to solve node's SSL woes when your system's root CAs are not up to date",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdspicer/ca-store.git"
+  },
+  "author": "pdspicer",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pdspicer/ca-store/issues"
+  },
+  "homepage": "https://github.com/pdspicer/ca-store#readme"
+}
