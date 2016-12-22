@@ -25,7 +25,7 @@ CaStore.generate = function generate (filepath) {
         .map(toPEM);
 };
 
-CaStore.exports = function pems (filepath) {
+CaStore.exports = function exports (filepath) {
     var toFile = filepath !== false,
         file = path.resolve(process.cwd(), filepath || 'ssl-root-cas'),
         extNotJs = path.extname(file) !== '.js',
@@ -49,29 +49,21 @@ CaStore.pems = function pems (filepath) {
 
 CaStore.bundle = function (filepath) {
     var file = path.resolve(process.cwd(), filepath || 'ssl-root-ca-bundle'),
-        extNotJs = path.extname(file) !== '.crt',
-        outputFile = extNotJs ? (file + '.crt') : file;
+        extNotCrt = ['.crt', '.cert', '.pem'].indexOf(path.extname(file)) < 0,
+        outputFile = extNotCrt ? (file + '.crt') : file;
     
     return download()
         .tap(function (certs) { return writer.writeBundle(certs, outputFile); })
         .map(toPEM);
 }
 
-CaStore.load = function generate (filepath) {
-    var file = path.resolve(process.cwd(), filepath || 'ssl-root-cas'),
-        extNotJs = path.extname(file) !== '.js',
-        outputFile = extNotJs ? (file + '.js') : file,
-        stat;
-    
-    try {
-        stat = fs.statSync(outputFile);
-        if (stat.isDirectory()) return [];
-    }
-    catch (err) {
-        return [];
-    }
-    return require(outputFile);
+CaStore.load = function load (filepath, opts) {
+    return reader.read(filepath, opts, false);
 };
+
+CaStore.loadAsync = function loadAsync (filepath, opts) {
+    return reader.read(filepath, opts, true);
+}
 
 function chkdirAndDownload (file) {
     return chkdirAsync(file).then(download);
