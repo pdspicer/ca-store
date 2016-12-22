@@ -25,15 +25,27 @@ CaStore[command](file)
     });
 
 function printUsage () {
-    console.info("Usage:");
-    console.info("       ca-store help");
-    console.info("       ca-store generate [outputfile]");
-    console.info("       ca-store pems [outputdir]");
-    console.info("       ca-store exports [outputfile]");
-    console.info("   where [outputfile] is the name of the file to write to, relative to the current working directory");
-    console.info("   Note that for generate, a 'pems/' directory will also be created at the same location as the [outputfile], " +
-        "   containing individual .pem files.");
-    console.info("   Omitting [outputfile] or [outputdir] will cause all output to be written to stdout");
+    var help = [
+        "",
+        "usage: ca-store [command] [output]",
+        "",
+        "commands:",
+        "  help             print this usage info",
+        "  pems <dir>       saves latest root certs to individual PEM files in <dir>",
+        "  exports <file>   writes latest root certs to <file> as a node.js script",
+        "                   that exports them as an array",
+        "  generate <file>  does both exports and pems commands, pems are saved to ",
+        "                   pems/ directory at the same path where <file> is located",
+        "  bundle <file>    saves latest root certs to a single .crt bundle file",
+        "",
+        "output (relative to current working directory):",
+        "  <file>    the path of the file to write to",
+        "  <dir>     the path of the directory to write to",
+        "  <stdout>  omitting [file] or [dir] will cause all output to be written to ",
+        "            stdout, which can then be piped to other programs.",
+        ""
+    ];
+    console.info(help.join('\n  '));
     
     process.exit(0);
 }
