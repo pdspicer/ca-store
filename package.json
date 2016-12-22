@@ -1,6 +1,6 @@
 {
   "name": "ca-store",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The module you need to solve node's SSL woes when your system's root CAs are not up to date",
   "author": "Paul Spicer <pdspicer@gmail.com>",
   "contributors": [

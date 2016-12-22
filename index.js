@@ -55,7 +55,7 @@ CaStore.bundle = function (filepath) {
         extNotCrt = ['.crt', '.cert', '.pem'].indexOf(path.extname(file)) < 0,
         outputFile = extNotCrt ? (file + '.crt') : file;
     
-    return download()
+    return chkdirAndDownload(path.dirname(outputFile))
         .tap(function (certs) { return writer.writeBundle(certs, outputFile); })
         .map(toPEM);
 }
