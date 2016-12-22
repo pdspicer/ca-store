@@ -2,18 +2,45 @@
   "name": "ca-store",
   "version": "0.0.0",
   "description": "The module you need to solve node's SSL woes when your system's root CAs are not up to date",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Paul Spicer <pdspicer@gmail.com>",
+  "contributors": [
+    "Forrest L Norvell <forrest@newrelic.com>",
+    "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.com)"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/pdspicer/ca-store#readme",
+  "bugs": {
+    "url": "https://github.com/pdspicer/ca-store/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pdspicer/ca-store.git"
   },
-  "author": "pdspicer",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/pdspicer/ca-store/issues"
+  "keywords": [
+    "SSL",
+    "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+    "CERT_UNTRUSTED",
+    "CAS",
+    "CA",
+    "ROOT",
+    "intermediate",
+    "leaf",
+    "error"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/pdspicer/ca-store#readme"
+  "directories": {
+    "lib": "lib",
+    "bin": "bin"
+  },
+  "bin": {
+    "ca-store": "bin/ca-store.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "invigilate": "^2.1.0",
+    "request": "^2.47.0"
+  }
 }
