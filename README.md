@@ -35,10 +35,17 @@ caStore.loadAsync('/etc/ssl/certs/ca-bundle.crt').then(rootCas => {
 ca-store also provides some methods for saving output from the cert download. These are described below.
 
 ## API
-### caStore.download()
-* **Returns:** A bluebird-style promise that resolves to an array of the newly downloaded certs
+### caStore.download(options)
+* **Params:**
+    - _options (object)_: controls return type
+        - _raw (boolean)_: whether or not to return raw cert with metaata, defaults to false
+* **Returns:** A bluebird-style promise that resolves to an array of the newly downloaded certs (plus metadata, if raw: true)
+in _options_.
 
-Downloads and returns the latest certificates from mozilla. Basic usage shown above
+Downloads and returns the latest certificates from mozilla. Basic usage shown above. If options.raw is truthy, returned
+array will contain objects that include the cert name, trust, and raw cert string in octal. The PEM format can be extracted
+by using cert.PEM(), which will return the string representation.
+
 ### caStore.exports(scriptName)
 * **Params:**
     - _scriptName (string)_: filepath of the script to generate, defaults to "./ssl-root-cas.js"

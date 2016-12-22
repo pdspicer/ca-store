@@ -8,8 +8,11 @@ var reader = require('./lib/reader'),
 
 var CaStore = module.exports = {};
 
-CaStore.download = function downloadToPems () {
-    return download().map(toPEM);
+CaStore.download = function downloadToPems (options) {
+    var opts = options instanceof Object ? options : {};
+    return download().then(function (certs) {
+        return options.raw ? certs : certs.map(toPEM);
+    });
 };
 
 CaStore.generate = function generate (filepath) {
